@@ -1,0 +1,8 @@
+# Zephyr / west 建置輸出
+build/
+twister-out*/
+
+# 編輯器與系統檔案
+.vscode/
+.idea/
+.DS_Store

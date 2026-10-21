@@ -1,0 +1,21 @@
+/*
+ * ESP32-DevKitC 板上沒有使用者 LED，這份 overlay 新增一個 LED 節點
+ * 指到 GPIO2（NodeMCU-32S 等相容板 GPIO2 上有板載藍色 LED；
+ * 沒有的話請在 GPIO2 外接 LED + 330 歐姆電阻到 GND）。
+ *
+ * 檔名對應 board target：esp32_devkitc_wroom/esp32/procpu
+ * （斜線換成底線，west build 時會自動套用）
+ */
+/ {
+	leds {
+		compatible = "gpio-leds";
+		board_led: led_0 {
+			gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+			label = "Board LED (GPIO2)";
+		};
+	};
+
+	aliases {
+		led0 = &board_led;
+	};
+};

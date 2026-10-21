@@ -1,0 +1,22 @@
+/*
+ * Pico 板上沒有可用的使用者按鍵（BOOTSEL 不在一般 GPIO 上），
+ * 所以外接一顆按鍵到 GP14：
+ *
+ *   GP14 (pin 19) ── 按鍵 ── GND (pin 18)
+ *
+ * 啟用內部上拉（GPIO_PULL_UP），按下時腳位被拉到 GND，
+ * 搭配 GPIO_ACTIVE_LOW，「按下 = 作用態」。
+ */
+/ {
+	buttons {
+		compatible = "gpio-keys";
+		user_button: button_0 {
+			gpios = <&gpio0 14 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "External button on GP14";
+		};
+	};
+
+	aliases {
+		sw0 = &user_button;
+	};
+};

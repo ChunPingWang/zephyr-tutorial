@@ -1,0 +1,18 @@
+/*
+ * 與 esp32_devkitc_wroom_esp32_procpu.overlay 內容相同。
+ * 較新的 Zephyr 版本把板名改為 esp32_devkitc，west 會依板名
+ * 自動選用對應檔名的 overlay，所以兩個檔名各放一份。
+ */
+/ {
+	leds {
+		compatible = "gpio-leds";
+		board_led: led_0 {
+			gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+			label = "Board LED (GPIO2)";
+		};
+	};
+
+	aliases {
+		led0 = &board_led;
+	};
+};

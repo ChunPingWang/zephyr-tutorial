@@ -1,0 +1,22 @@
+/*
+ * RP2040 內建晶片溫度感測器（接在 ADC 通道 4），
+ * 板子預設是 disabled，這裡把它和 ADC 一起打開，
+ * 並定義 die-temp0 alias 給程式碼使用。
+ *
+ * 注意：節點 label（dietemp）以 Zephyr v4.x 的 rp2040.dtsi 為準，
+ * 若建置時找不到，請比對 zephyr/samples/sensor/die_temp_polling
+ * 範例中 rpi_pico 的 overlay 寫法。
+ */
+/ {
+	aliases {
+		die-temp0 = &dietemp;
+	};
+};
+
+&adc {
+	status = "okay";
+};
+
+&dietemp {
+	status = "okay";
+};
